@@ -18,3 +18,6 @@
 - https://www.codementor.io/@jamesezechukwu/how-to-deploy-django-app-on-heroku-dtsee04d4
 - https://www.digitalocean.com/community/tutorials/build-a-to-do-application-using-django-and-react
 - https://docs.djangoproject.com/en/4.0/intro/tutorial02/
+- https://circleci.com/blog/django-deploy/
+- https://github.com/CircleCI-Public/circleci-demo-python-django
+- https://jangiacomelli.com/django-tests-on-circleci-step-by-step/
