@@ -16,6 +16,3 @@ class Job(models.Model):
         max_length=15, choices=Status.choices, default=Status.UNPUBLISHED
     )
     created_at = models.DateTimeField(auto_now_add=True)
-
-
-# Create your models here.
