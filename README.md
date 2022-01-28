@@ -1,12 +1,11 @@
 # Django, React, Heroku app
 
-## Setup
-
 - Make utility cli available with `source local/utils.sh`
-- Run `ofir setup`
+- Start Django server with `ofir pm runserver`
+- Start next.js with `npm run dev` in `nextjs`.
 
-The setup process can be cleaned with `ofir setup clean`.
+## Todo
 
-## Django
-
-- Start Django server with `ofir pm rs`
+- [ ] Write tests
+- [ ] Setup CircleCI
+- [ ] Deploy on Heroku
