@@ -1,4 +1,4 @@
-# Django, React, Heroku app
+# Django, React, CircleCI, Heroku app
 
 - Make utility cli available with `source local/utils.sh`
 - Start Django server with `ofir pm runserver`
@@ -6,7 +6,6 @@
 
 ## Todo
 
-- [ ] Write tests
 - [ ] Setup CircleCI
 - [ ] Deploy on Heroku
 
