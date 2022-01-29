@@ -51,3 +51,5 @@
 
 - Difficult to set up different environments (env, prod) with Heroku?
 - Perhaps better with DigitalOcean/AWS?
+- Heroku has own CI: https://devcenter.heroku.com/articles/heroku-ci Why use CircleCI?
+- Perhaps put in Docker container?
