@@ -54,3 +54,4 @@
 - Heroku has own CI: https://devcenter.heroku.com/articles/heroku-ci Why use CircleCI?
 - Perhaps put in Docker container?
 - After having published first time error occurs, see for instance for a discussion of this: https://discuss.circleci.com/t/deployment-to-heroku-push-rejected/3138
+- See also other branch `old-main` for setup with different environments.
