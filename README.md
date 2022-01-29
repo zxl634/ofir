@@ -6,8 +6,8 @@
 
 ## Todo
 
-- [ ] Setup CircleCI
-- [ ] Deploy on Heroku
+- [x] Setup CircleCI
+- [x] Deploy on Heroku
 
 ## Setup
 
