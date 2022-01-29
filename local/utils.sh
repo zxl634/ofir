@@ -53,12 +53,19 @@ function ofir {
     _print_and_do "cd $_nextjs_name"
     _print_and_do "npm run dev"
   }
+  function _circleci {
+    case "$1" in
+      validate) _print_and_do "circleci config validate";;
+      *) echo "unknown command";;
+    esac
+  }
   case "$1" in
     venv) _venv "${@:2}";;
     set-env) _set_env "${@:2}";;
     pm) _manage_py "${@:2}";;
     next) _next "${@:2}";;
     test) _test "${@:2}";;
+    ci) _circleci "${@:2}";;
     *) echo "unknown command";;
   esac
   }
@@ -78,8 +85,10 @@ function _ofir_completions {
     _set_compreply "rs" "${COMP_WORDS[2]}"
   elif [[ "${COMP_WORDS[1]}" == "set-env" ]]; then
     _set_compreply "dev test" "${COMP_WORDS[2]}"
+  elif [[ "${COMP_WORDS[1]}" == "ci" ]]; then
+    _set_compreply "validate" "${COMP_WORDS[2]}"
   else
-    _set_compreply "next test pm set-env venv" "${COMP_WORDS[1]}"
+    _set_compreply "ci next test pm set-env venv" "${COMP_WORDS[1]}"
   fi
 }
 

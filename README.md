@@ -9,6 +9,10 @@
 - [ ] Setup CircleCI
 - [ ] Deploy on Heroku
 
+## Setup
+
+- New Heroku app created with `heroku create djangofir`
+
 ## Resources
 
 - "Decoupled Django", Gagliardi
@@ -21,3 +25,4 @@
 - https://circleci.com/blog/django-deploy/
 - https://github.com/CircleCI-Public/circleci-demo-python-django
 - https://jangiacomelli.com/django-tests-on-circleci-step-by-step/
+- https://discuss.circleci.com/t/circleci-2-1-config-overview/26057
