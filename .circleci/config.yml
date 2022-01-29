@@ -5,3 +5,11 @@ workflows:
   heroku_deploy:
     jobs:
       - heroku/deploy-via-git
+  jobs:
+    deployment:
+      production:
+        branch: main
+        commands:
+          - git remote add heroku git@heroku.com:herokuapplicationname.git
+          - "[[ ! -s \"$(git rev-parse --git-dir)/shallow\" ]] || git fetch --unshallow"
+          - cd ../../.. && git subtree push --prefix github.com/zxl634/ofir heroku master
