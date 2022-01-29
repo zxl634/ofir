@@ -26,12 +26,6 @@ jobs:
             DOCKERIZE_VERSION: v0.3.0
       - run:
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - run:
-          name: Running tests
-          command: |
-            . venv/bin/activate
-            cd djangofir
-            python manage.py test
       - store_artifacts:
           path: test-reports/
           destination: python_app
