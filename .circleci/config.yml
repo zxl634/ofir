@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
 jobs:
-  build:
+  test_build:
     environment:
       DJANGO_SETTINGS_MODULE: djangofir.testing.production 
     docker:
@@ -33,7 +33,7 @@ jobs:
       - store_artifacts:
           path: test-reports/
           destination: python_app
-  deploy:
+  production_build:
     environment:
       DJANGO_SETTINGS_MODULE: djangofir.settings.production 
     docker:
@@ -51,4 +51,12 @@ jobs:
           key: deps1-{{ .Branch }}-{{ checksum "python/requirements/production.txt" }}
           paths:
             - "venv"
+    production_deploy
       - heroku/deploy-via-git
+
+workflows:
+  build_and_test:
+    jobs:
+      - test_build
+      - production_build
+      - production_deploy
