@@ -6,6 +6,7 @@ function ofir {
   local _venv_name=venv
   local _venv_dir="$_script_dir/../python/$_venv_name"
   local _django_name=djangofir
+  local _django_dir="$_script_dir/../$_django_name"
   local _this=${FUNCNAME[0]}
   local _nextjs_name="nextjs"
   function _print_and_do () {
@@ -16,9 +17,12 @@ function ofir {
   }
   function _manage_py {
     local _pm="$_venv_dir/bin/python manage.py"
-    cd "$_django_name" || return
+    cd "$_django_dir" || return
     case "$1" in
       rs) _print_and_do "$_pm runserver";;
+      delete-all-migrations) _print_and_do 'find -E djangofir/*/migrations -regex ".*[0-9].*.py" -delete';;
+      mm) _print_and_do "$_pm makemigrations";;
+      m) _print_and_do "$_pm migrate";;
       *) _print_and_do "$_pm $*";;
     esac
     cd - || return
