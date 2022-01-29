@@ -51,7 +51,7 @@ jobs:
           key: deps1-{{ .Branch }}-{{ checksum "python/requirements/production.txt" }}
           paths:
             - "venv"
-    production_deploy
+    production_deploy:
       - heroku/deploy-via-git
 
 workflows:
