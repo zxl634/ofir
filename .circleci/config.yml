@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
 jobs:
-  test:
+  build:
     environment:
       DJANGO_SETTINGS_MODULE: djangofir.testing.production 
     docker:
