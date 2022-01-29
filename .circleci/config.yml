@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  heroku: circleci/heroku@0.0.10
 jobs:
   build:
     docker:
@@ -29,3 +31,6 @@ jobs:
       - store_artifacts:
           path: test-reports/
           destination: python_app
+  heroku_deploy:
+    steps:
+      - heroku/deploy-via-git
