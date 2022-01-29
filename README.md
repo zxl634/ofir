@@ -45,3 +45,9 @@
 - https://www.codementor.io/@jamesezechukwu/how-to-deploy-django-app-on-heroku-dtsee04d4
 - https://github.com/CircleCI-Public/circleci-demo-python-django
 - https://jangiacomelli.com/django-tests-on-circleci-step-by-step/
+- https://github.com/CIRCLECI-GWP/cci-cd-django
+
+## Notes
+
+- Difficult to set up different environments (env, prod) with Heroku?
+- Perhaps better with DigitalOcean/AWS?

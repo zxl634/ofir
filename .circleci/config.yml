@@ -1,62 +1,8 @@
 version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
-jobs:
-  test_build:
-    environment:
-      DJANGO_SETTINGS_MODULE: djangofir.testing.production 
-    docker:
-      - image: circleci/python:3.9
-      - image: circleci/postgres:9-bullseye-ram
-        environment:
-          POSTGRES_USER: djangofir
-          POSTGRES_PASSWORD: localpassword
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "python/requirements/testing.txt" }}
-      - run:
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r python/requirements/testing.txt
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "python/requirements/testing.txt" }}
-          paths:
-            - "venv"
-      - run:
-          command: wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && sudo tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
-          environment:
-            DOCKERIZE_VERSION: v0.3.0
-      - run:
-          command: dockerize -wait tcp://localhost:5432 -timeout 1m
-      - store_artifacts:
-          path: test-reports/
-          destination: python_app
-  production_build:
-    environment:
-      DJANGO_SETTINGS_MODULE: djangofir.settings.production 
-    docker:
-      - image: circleci/python:3.9
-    steps:
-      - checkout
-      - restore_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "python/requirements/production.txt" }}
-      - run:
-          command: |
-            python3 -m venv venv
-            . venv/bin/activate
-            pip install -r python/requirements/production.txt
-      - save_cache:
-          key: deps1-{{ .Branch }}-{{ checksum "python/requirements/production.txt" }}
-          paths:
-            - "venv"
-    production_deploy:
-      - heroku/deploy-via-git
-
 workflows:
-  build_and_test:
+  heroku_deploy:
     jobs:
-      - test_build
-      - production_build
-      - production_deploy
+      - heroku/deploy-via-git
+version: 2.1
