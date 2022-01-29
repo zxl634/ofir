@@ -1,12 +1,10 @@
 version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
-workflows:
-  heroku_deploy:
-    jobs:
-      - heroku/deploy-via-git
 jobs:
-  build:
+  test:
+    environment:
+      DJANGO_SETTINGS_MODULE: djangofir.testing.production 
     docker:
       - image: circleci/python:3.9
       - image: circleci/postgres:9-bullseye-ram
@@ -35,3 +33,22 @@ jobs:
       - store_artifacts:
           path: test-reports/
           destination: python_app
+  deploy:
+    environment:
+      DJANGO_SETTINGS_MODULE: djangofir.settings.production 
+    docker:
+      - image: circleci/python:3.9
+    steps:
+      - checkout
+      - restore_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "python/requirements/production.txt" }}
+      - run:
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install -r python/requirements/production.txt
+      - save_cache:
+          key: deps1-{{ .Branch }}-{{ checksum "python/requirements/production.txt" }}
+          paths:
+            - "venv"
+      - heroku/deploy-via-git
