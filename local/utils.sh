@@ -11,6 +11,9 @@ function ofir {
   function _print_and_do () {
     echo -e "\n>>> running: $*\n" && eval "$@"
   }
+  function _open_in_browser {
+    open "$1"
+  }
   function _manage_py {
     local _pm="$_venv_dir/bin/python manage.py"
     cd "$_django_name" || return
@@ -56,7 +59,7 @@ function ofir {
   function _circleci {
     case "$1" in
       validate) _print_and_do "circleci config validate";;
-      *) echo "unknown command";;
+      *) _open_in_browser "https://app.circleci.com/pipelines/github/zxl634/ofir?filter=all";;
     esac
   }
   case "$1" in
