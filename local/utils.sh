@@ -13,7 +13,6 @@ function ofir {
   }
   function _manage_py {
     local _pm="$_venv_dir/bin/python manage.py"
-    _print_and_do "$_this set-env dev"
     cd "$_django_name" || return
     case "$1" in
       rs) _print_and_do "$_pm runserver";;
@@ -40,7 +39,8 @@ function ofir {
     case "$1" in
       dev) _print_and_do "export DJANGO_SETTINGS_MODULE=$_django_name.settings.development";;
       test) _print_and_do "export DJANGO_SETTINGS_MODULE=$_django_name.settings.testing";;
-      *) echo "unknown command";;
+      prod) _print_and_do "export DJANGO_SETTINGS_MODULE=$_django_name.settings.production";;
+      *) echo "Current env is $DJANGO_SETTINGS_MODULE";;
     esac
   }
   function _test {
@@ -84,7 +84,7 @@ function _ofir_completions {
   if [[ "${COMP_WORDS[1]}" == "pm" ]]; then
     _set_compreply "rs" "${COMP_WORDS[2]}"
   elif [[ "${COMP_WORDS[1]}" == "set-env" ]]; then
-    _set_compreply "dev test" "${COMP_WORDS[2]}"
+    _set_compreply "dev test prod" "${COMP_WORDS[2]}"
   elif [[ "${COMP_WORDS[1]}" == "ci" ]]; then
     _set_compreply "validate" "${COMP_WORDS[2]}"
   else
